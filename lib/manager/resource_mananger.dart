@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ImageHelper{
 
   static String wrapAssetsLogo(String url){
-    return "assets/logos/" + url;
+    return "assets/icons/" + url;
   }
 
   static String wrapAssetsImage(String url){

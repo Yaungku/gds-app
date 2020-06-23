@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:gds/api/dio.dart';
 import 'package:gds/generated/l10n.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -63,51 +62,6 @@ class ViewStateModel with ChangeNotifier {
     viewState = ViewState.empty;
   }
 
-  /// [e] is error or exception
-  void setError(e, s, {String message}) {
-    ViewStateErrorType errorType = ViewStateErrorType.defaultError;
-
-    /// copy past from 
-    /// https://github.com/flutterchina/dio/blob/master/README-ZH.md#dioerrortype
-    if (e is DioError) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT ||
-          e.type == DioErrorType.SEND_TIMEOUT ||
-          e.type == DioErrorType.RECEIVE_TIMEOUT) {
-        // timeout
-        errorType = ViewStateErrorType.networkTimeOutError;
-        message = e.error;
-      } else if (e.type == DioErrorType.RESPONSE) {
-        // incorrect status, such as 404, 503...
-        message = e.error;
-      } else if (e.type == DioErrorType.CANCEL) {
-        // to be continue...
-        message = e.error;
-      } else {
-        // our custom dio erro from specify purpose
-        e = e.error;
-        if (e is UnAuthorizedException) {
-          s = null;
-          errorType = ViewStateErrorType.unauthorizedError;
-        } else if (e is NotSuccessException) {
-          s = null;
-          message = e.message;
-        } else if (e is SocketException) {
-          errorType = ViewStateErrorType.networkTimeOutError;
-          message = e.message;
-        } else {
-          message = e.message;
-        }
-      }
-    }
-    viewState = ViewState.error;
-    _viewStateError = ViewStateError(
-      errorType,
-      message: message,
-      errorMessage: e.toString(),
-    );
-    printErrorStack(e, s);
-    onError(viewStateError);
-  }
 
   void onError(ViewStateError viewStateError) {}
 

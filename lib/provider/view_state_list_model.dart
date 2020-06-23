@@ -25,7 +25,7 @@ abstract class ViewStateListModel<T> extends ViewStateModel{
       }
     } catch (e, s) {
       if (init) list.clear();
-      setError(e, s);
+      print(s);
     }
   }
   // Load data
