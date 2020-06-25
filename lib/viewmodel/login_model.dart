@@ -6,7 +6,6 @@ import 'package:gds/viewmodel/usermodel.dart';
 
 // save user login name to let them get their last name after logout
 const String mail = 'mail';
-const String baba = 'user';
 // save token to pass our server
 const String token = 'token';
 const String phno = 'phno';
@@ -31,6 +30,7 @@ class LoginModel extends ViewStateModel{
       print(user.token);
       userModel.saveUser(user);
       print(userModel.user.id);
+      print(user.phno);
       StorageManager.sharedPreferences
         .setString(token, user.token);
       StorageManager.sharedPreferences

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gds/ui/main/home/home.dart';
 import 'package:gds/ui/main/login/login.dart';
+import 'package:gds/ui/main/history/history.dart';
+import 'package:gds/ui/main/webview/webview.dart';
 import 'package:gds/ui/widgets/page_route_animation.dart';
 
 class RouteName{
   static const String login = '/';
   static const String home = 'home';
   static const String network = 'network';
+  static const String history = 'history';
+  static const String web = 'web';
   // static const String error = 'error';
 }
 
@@ -18,6 +22,10 @@ class Router {
         return NoAnimRouteBuilder(Login());
       case RouteName.home:
         return NoAnimRouteBuilder(Home());
+      case RouteName.history:
+        return NoAnimRouteBuilder(HistoryPage());
+      case RouteName.web:
+        return NoAnimRouteBuilder(MTKweb());
       default:
         return CupertinoPageRoute(
             builder: (_) => Scaffold(

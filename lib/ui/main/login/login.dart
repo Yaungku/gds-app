@@ -106,6 +106,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gds/manager/router_manager.dart';
 import 'package:gds/provider/provider_widget.dart';
 import 'package:gds/ui/main/home/home.dart';
 import 'package:gds/ui/widgets/LoginFormContainer_widget.dart';
@@ -246,9 +247,7 @@ class LoginButton extends StatelessWidget {
                   .login(mailController.text, passwordController.text)
                   .then((value){
                     if(value){
-                      Navigator.push(context, 
-                      MaterialPageRoute(builder: (context) => Home(),)
-                      );
+                      Navigator.of(context).pushReplacementNamed(RouteName.home);
                     } else {
                       model.showErrorMessage(context);
                     }
