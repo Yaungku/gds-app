@@ -25,34 +25,55 @@ class _HistoryState extends State<HistoryPage> {
               error: model.viewStateError, 
               onPressed: model.initData);
           }
-          //print(model.list.length);
-          return CustomScrollView(
+          print(model.list.length);
+          return Container(
+          child: CustomScrollView(
+            scrollDirection: Axis.vertical,
             slivers: <Widget> [
-              SliverList(
+              new SliverPadding(
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              sliver: new SliverFixedExtentList(
+                itemExtent: 172.0,
                 delegate: SliverChildBuilderDelegate(
                 (context, index){
                   History history = model.list[index];
-                    return Column(
-                      children: <Widget>[ 
-                      ListTile(
-                        // leading: CircleAvatar(
-                        //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                        //   backgroundImage: NetworkImage(history),
-                        // ),
-                        title: Text(history.name),
-                        ///[Last Message]
-                        subtitle: Text(history.name),
-                        onTap: () {},         
+                    return 
+                      Container(
+                        margin: new EdgeInsets.all(16.0),
+                        padding: new EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).accentColor,
+                          borderRadius: BorderRadius.all(Radius.circular(15.0),
+                          ),
                         ),
-                        Divider(color: Colors.grey,)
+                        // color: Colors.red,
+                        height: 90.0,
+                        child: new Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("Name : "+history.name),
+                                    Text("Phone No : "+ history.phno),
+                                    Text("Cost : "+ history.cost.toString() ),
+                                    Text("From : " + history.tranid),
+                                    Text("Agent : "+ history.agent)
+                                  ],
+                                )
+                              ],
+                        )
                       ]
-                    );
+                    ));
                   },
                 childCount: model.list?.length ?? 0,
                 ),
-              )
+              ))
             ]
-          ); 
+          )); 
         },
       )
     );

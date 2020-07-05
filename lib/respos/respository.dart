@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:gds/manager/storage_manager.dart';
 import 'package:gds/model/history.dart';
 import 'package:gds/model/user.dart';
@@ -23,12 +22,23 @@ class Repository {
     var phone = StorageManager.sharedPreferences.getString(phno);
     int phoneno = int.parse(phone);
     var response = await http.get(url+"$phoneno");
-    print(response.body);
-    Map res = jsonDecode(response.body).toList();
-    print(res);
+    var data = json.decode(response.body);
+    print(data);
+    return data.map<History>((item) => History.fromJson(item))
+        .toList();
     // return res.map((key, value) => List)
     // return History.fromJson(res);
   }
+
+  static Future home() async {
+    var url = "https://us-central1-gdsprototypeapi-1968a.cloudfunctions.net/app/api/users/read/";
+    var phone = StorageManager.sharedPreferences.getString(phno);
+    int phoneno = int.parse(phone);
+    var reponse = await http.get(url+ "$phoneno");
+    print(reponse);
+
+  }
+
   static Future webview() async {
     var url = "https://agent_api.mintheinkha.com/agent/request";
     var phone = StorageManager.sharedPreferences.getString(phno);
@@ -39,6 +49,7 @@ class Repository {
       "user_agent":"$phone"
     });
     print(response.body);
+    return response.body;
   }
   // static Future register(
   //   String mail, String name, String lastname, String password) async{
