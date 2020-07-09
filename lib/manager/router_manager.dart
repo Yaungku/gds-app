@@ -21,11 +21,11 @@ class Router {
       case RouteName.login:
         return NoAnimRouteBuilder(Login());
       case RouteName.home:
-        return NoAnimRouteBuilder(Home());
+        return NoAnimRouteBuilder(HomePage());
       case RouteName.history:
-        return NoAnimRouteBuilder(HistoryPage());
+        return CupertinoPageRoute(builder: (_) => HistoryPage());
       case RouteName.web:
-        return NoAnimRouteBuilder(MTKweb());
+        return CupertinoPageRoute(builder: (_) => MTKweb());
       default:
         return CupertinoPageRoute(
             builder: (_) => Scaffold(

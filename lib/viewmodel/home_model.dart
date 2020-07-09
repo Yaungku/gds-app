@@ -1,15 +1,14 @@
-import 'package:gds/model/web.dart';
+import 'package:gds/model/home.dart';
 import 'package:gds/provider/view_state_model.dart';
 import 'package:gds/respos/respository.dart';
-import 'package:gds/ui/main/home/home.dart';
 
 class HomeModel extends ViewStateModel{
-  HomeModel({this.data});
   Home data;
+  HomeModel({this.data});
   initData() async {
     setBusy();
     try {
-      data = await Repository.webview();
+      data = await Repository.home();
       setIdle();
     } catch (e, s) {
       print(e);

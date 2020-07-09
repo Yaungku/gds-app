@@ -9,6 +9,7 @@ class WebModel extends ViewStateModel{
     setBusy();
     try {
       webdata = await Repository.webview();
+      print(webdata);
       setIdle();
     } catch (e, s) {
       print(e);
