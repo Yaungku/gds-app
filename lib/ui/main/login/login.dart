@@ -244,7 +244,7 @@ class LoginButton extends StatelessWidget {
             var formState = Form.of(context);
             if (formState.validate()){
               model
-                  .login(mailController, passwordController)
+                  .login(mailController.text, passwordController.text)
                   // .login(mailController.text, passwordController.text)
                   .then((value){
                     if(value){
